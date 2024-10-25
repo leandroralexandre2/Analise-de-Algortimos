@@ -1,1 +1,60 @@
 
+#include <iostream> 
+using namespace std;
+
+main(){
+	setlocale(LC_ALL, "portuguese");
+	int n;
+	int *vet,i,posi,numero,inicio,fim,achou,elementosexcluidos,qtdeTeste;
+   
+    cout<<"Informe a quantidade de elementos de forma ordenada para procurar"<<endl;
+    cin>>n;
+     vet = new int[n];
+	for(i=0;i<=n;i++){
+		cout<<"Informe os elementos"<<endl;
+		cin>>vet[i];
+	}
+
+	cout<<"Informe o número para a busca: "<<endl;
+	cin>>numero;
+	
+	achou=0;
+	inicio=0;
+	fim=n;
+	posi=(inicio+fim)/2;
+	qtdeTeste=0;
+	
+	while((inicio<fim)&&(achou==0)){
+	qtdeTeste++;
+		if(vet[posi]==numero){
+			achou=1;
+			
+		}
+		else if(vet[posi]<numero){
+				elementosexcluidos = (posi+1) - inicio;
+				inicio=posi+1;
+				posi=(inicio+fim)/2;
+				cout<<"Excluídos: "<<elementosexcluidos<<endl;
+				
+			}
+			else{
+				elementosexcluidos =fim - (posi-1);
+				fim=posi-1;
+				posi=(inicio+fim)/2;
+				cout<<"Excluídos: "<<elementosexcluidos<<endl;
+			}
+			
+		}
+	if(achou==0){
+		cout<<"Número "<<numero<<" não encontrado"<<endl;
+		cout<<"-1"<<endl;
+		cout<<"Quantidade de testes realizados: "<<qtdeTeste;
+	}	
+	else{
+		cout<<"Número "<<numero<<" encontrado com sucesso, na posição: "<<posi<<endl;
+		cout<<"Quantidade de testes realizados: "<<qtdeTeste;
+	}
+	
+}
+
+
